@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #9f055d;
+  --brand-dark: #7a0448;
+  --brand-text: #c2186e;
+  --accent: #f8cf05;
+  --muted-bg: #fff6fe;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: #212529;
+  background: #ffffff;
+}
+
+/* hide scrollbar on the services carousel track while keeping it scrollable/swipeable */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
