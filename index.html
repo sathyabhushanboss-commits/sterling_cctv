@@ -48,8 +48,30 @@
 .services-area-content .readmore{color:#da0987;font-weight:600;font-size:14px}
 .home-clients{padding:50px 0 60px;background:#fff}
 .home-clients .section-title h2{color:#96185f}
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.svc-grid .services-area-content{margin-bottom:0;height:100%}
+/* services: grid on mobile/tablet, slider on desktop */
+.svc-track{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.svc-track .services-area-content{margin-bottom:0;height:100%}
+.svc-nav,.svc-dots{display:none}
+.home-services.services-item-area .services-area-content:hover{background-color:#fff !important;transform:none}
+.home-services.services-item-area .services-area-content:hover h3,
+.home-services.services-item-area .services-area-content:hover h3 a{color:#da0987 !important}
+.home-services.services-item-area .services-area-content:hover p{color:#666 !important}
+.home-services.services-item-area .services-area-content:hover .readmore{color:#da0987 !important}
+.home-services .services-area-content{transition:box-shadow .3s ease}
+.home-services .services-area-content:hover{box-shadow:0 10px 35px rgba(218,9,135,.18) !important}
+@media (max-width:575px){.svc-track{grid-template-columns:1fr}}
+@media (min-width:992px){
+  .svc-slider{position:relative;padding:0 55px}
+  .svc-viewport{overflow:hidden;padding:10px 4px 20px}
+  .svc-track{display:flex;gap:28px;transition:transform .6s ease;will-change:transform}
+  .svc-track .services-item{flex:0 0 calc((100% - 56px)/3)}
+  .svc-nav{display:flex;align-items:center;justify-content:center;position:absolute;top:42%;width:42px;height:42px;border-radius:50%;border:0;background:#da0987;color:#fff;cursor:pointer;z-index:2;box-shadow:0 4px 14px rgba(0,0,0,.15);font-size:30px;line-height:1;padding-bottom:4px}
+  .svc-nav:hover{background:#96185f}
+  .svc-prev{left:0}.svc-next{right:0}
+  .svc-dots{display:flex;justify-content:center;gap:8px;margin-top:6px}
+  .svc-dots button{width:11px;height:11px;border-radius:50%;border:0;background:#e3bcd3;padding:0;cursor:pointer}
+  .svc-dots button.active{background:#da0987;width:26px;border-radius:6px}
+}
 .client-marquee{overflow:hidden;width:100%}
 .client-track{display:flex;gap:24px;width:max-content;animation:clientScroll 90s linear infinite}
 .client-marquee:hover .client-track{animation-play-state:paused}
@@ -160,7 +182,9 @@
              <span>WHAT WE DO</span>
              <h2>Our Services</h2>
            </div>
-           <div class="svc-grid">
+           <div class="svc-slider" id="svcSlider">
+             <button type="button" class="svc-nav svc-prev" aria-label="Previous">&#8249;</button>
+             <div class="svc-viewport"><div class="svc-track">
           <div class="services-item">
             <div class="services-area-content">
               <a href="cctv-cameras.html"><img src="images/cc-cameras.jpg" alt="CCTV Cameras" title="CCTV Cameras"></a>
@@ -265,6 +289,9 @@
               <a href="pir-system.html" class="readmore">Read More <i class="fa fa-angle-double-right"></i></a>
             </div>
           </div>
+             </div></div>
+             <button type="button" class="svc-nav svc-next" aria-label="Next">&#8250;</button>
+             <div class="svc-dots"></div>
            </div>
          </div>
        </section>
@@ -408,5 +435,34 @@ Bangalore – 560010<br>
         <script src="js/contact-form-script.js"></script>
         <script src="js/main.js"></script>
 
+
+<script>
+(function(){
+  var root=document.getElementById('svcSlider'); if(!root) return;
+  var track=root.querySelector('.svc-track'), items=track.children,
+      dotsBox=root.querySelector('.svc-dots'), idx=0, timer=null, perView=3, gap=28;
+  function desktop(){return window.matchMedia('(min-width:992px)').matches;}
+  function maxIdx(){return Math.max(0, items.length-perView);}
+  function go(i){
+    if(!desktop()){track.style.transform='';return;}
+    var m=maxIdx(); idx = i>m ? 0 : (i<0 ? m : i);
+    var w=items[0].getBoundingClientRect().width;
+    track.style.transform='translateX(' + (-(w+gap)*idx) + 'px)';
+    var d=dotsBox.children; for(var k=0;k<d.length;k++){d[k].classList.toggle('active',k===idx);}
+  }
+  function buildDots(){
+    dotsBox.innerHTML='';
+    for(var k=0;k<=maxIdx();k++){(function(n){var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Slide '+(n+1));b.onclick=function(){go(n);restart();};dotsBox.appendChild(b);})(k);}
+  }
+  function start(){stop(); if(desktop()) timer=setInterval(function(){go(idx+1);},3500);}
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function restart(){start();}
+  root.querySelector('.svc-prev').onclick=function(){go(idx-1);restart();};
+  root.querySelector('.svc-next').onclick=function(){go(idx+1);restart();};
+  root.addEventListener('mouseenter',stop); root.addEventListener('mouseleave',start);
+  var rt; window.addEventListener('resize',function(){clearTimeout(rt);rt=setTimeout(function(){go(idx);start();},150);});
+  buildDots(); go(0); start();
+})();
+</script>
 </body>
 </html>
