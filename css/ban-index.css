@@ -1,0 +1,161 @@
+@charset "utf-8";
+/* CSS Document */
+/*---------- LEFT/RIGHT ROUND CONTROL ----------*/
+.control-round .carousel-control {
+    top:43%;
+    opacity: 0;
+    width: 45px;
+    height: 45px;
+    z-index: 100;
+    color: #ffffff;
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+    overflow: hidden;
+    line-height: 43px;
+    text-shadow: none;
+    position: absolute;
+    font-weight: normal;
+    background: transparent;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+}
+.control-round:hover .carousel-control{
+    opacity: 1;
+}
+.control-round .carousel-control.left {
+    left: 1%;
+}
+.control-round .carousel-control.right {
+    right: 1%;
+}
+.control-round .carousel-control.left:hover,
+.control-round .carousel-control.right:hover{
+    color: #fdfdfd;
+    background: rgba(0, 0, 0, 0.5);
+    border: 0px transparent;
+}
+.control-round .carousel-control.left>span:nth-child(1){
+    left: 45%;
+}
+.control-round .carousel-control.right>span:nth-child(1){
+    right: 45%;
+}
+
+/*---------- INDICATORS CONTROL ----------*/
+.indicators-line > .carousel-indicators{
+    right: 45%;
+    bottom: 3%;
+    left: auto;
+    width: 90%;
+    height: 20px;
+    font-size: 0;
+    overflow-x: auto;
+    text-align: right;
+    overflow-y: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 1px;
+    white-space: nowrap;
+}
+.indicators-line > .carousel-indicators li{
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgb(158, 158, 158);
+    text-indent: 0;
+    overflow: hidden;
+    text-align: left;
+    position: relative;
+    letter-spacing: 1px;
+    background: rgb(158, 158, 158);
+    -webkit-font-smoothing: antialiased;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 5px;
+    -webkit-transition: all 0.5s cubic-bezier(0.22,0.81,0.01,0.99);
+    transition: all 0.5s cubic-bezier(0.22,0.81,0.01,0.99);
+    z-index: 10;
+    cursor:pointer;
+}
+.indicators-line > .carousel-indicators li:last-child{
+    margin-right: 0;
+}
+.indicators-line > .carousel-indicators .active{
+    margin: 1px 5px 1px 1px;
+    box-shadow: 0 0 0 2px #fff;
+    background-color: transparent;
+    position: relative;
+    -webkit-transition: box-shadow 0.3s ease;
+    -moz-transition: box-shadow 0.3s ease;
+    -o-transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+
+}
+.indicators-line > .carousel-indicators .active:before{
+    transform: scale(0.5);
+    background-color: #fff;
+    content:"";
+    position: absolute;
+    left:-1px;
+    top:-1px;
+    width:15px;
+    height: 15px;
+    border-radius: 50%;
+    -webkit-transition: background-color 0.3s ease;
+    -moz-transition: background-color 0.3s ease;
+    -o-transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease;
+}
+
+.thumb1 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 60px;
+    left:80px;
+    color: #ffffff;
+    line-height: 45px;
+    font-size:30px;
+    padding-left: 10px;
+    display: block;
+    text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif; font-weight:bold; letter-spacing:1px;
+}
+.view4{position:absolute; text-align:left; text-decoration:none; list-style:none;margin-left:90px; margin-top:-230px; width:auto; height:auto; border:2px solid #f31801; text-align:center; border-radius:5px; background-color: #f31801;padding: 5px 10px; font-family: 'Montserrat', sans-serif;}
+.view4 a:hover{color: #ffffff; font-family: 'Montserrat', sans-serif; text-decoration: none;}
+.view4 a{color: #ffffff; font-family: 'Montserrat', sans-serif;}
+
+
+#k1{margin-top: -330px;}
+#k2{}
+#k3{}
+#k4{}
+#k5{}
+
+#head2{margin-top:130px;}
+
+@media all and (max-width: 768px)
+{
+.thumb1 {
+    top: 5px;
+    left:30px;
+    line-height:21px;
+    font-size:12px;
+}
+
+.view4{ position:absolute; text-align:left; text-decoration:none; list-style:none;margin-left:40px; margin-top:-55px; width:auto; height:auto; text-align:center; border-radius:5px; font-size: 12px; padding: 2px 8px;}
+#k1{margin-top:-60px;}
+
+#head2{margin-top:20px; color:#ffffff; line-height: 21px; left: 30px;} 
+.control-round .carousel-control.left:hover, .control-round .carousel-control.right:hover{background-color: transparent;}
+.control-round .carousel-control{top: 35%;}	
+.control-round .carousel-control.left{left: -3%;}
+.control-round .carousel-control.right{right: -3%;}
+	
+	
+}
